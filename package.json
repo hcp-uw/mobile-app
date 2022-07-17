@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "rn-qr-generator": "^1.2.0"
+  }
+}
