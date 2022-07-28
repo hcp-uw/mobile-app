@@ -8,6 +8,9 @@
 // need declare var inputValue??
 // make sure it can loop eg multiple inputs generate multiple QR
 // how to save URI to variable on press????
+// intended ui; bottom tabs to navigate between generating and scanning
+//    generating page; textbox where people can input anything they want
+//    generate QR code depending on that in a space below the textbox
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
