@@ -1,80 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
 import {
+  StyleSheet,
+  Image,
   View,
   Text,
-  StyleSheet,
-  Button,
-  Image
+  TouchableOpacity
 } from 'react-native';
 
 // 1. Import 
-import QRCode from 'react-native-qrcode-svg';
-import { BarCodeScanner } from 'expo-barcode-scanner';
 import { NavigationContainer } from '@react-navigation/native';
-import { useIsFocused } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-// bottom tab demonstration
-function ScanScreen() {
-  // QR code scanner
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-  const isFocused = useIsFocused();
+import { MyCardsScreen } from './screens/MyCardsScreen';
+import { ScanScreen } from './screens/ScanScreen';
+import { HistoryScreen } from './screens/HistoryScreen';
 
-  // useEffect runs after each render
-  useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-  };
-
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
-  return (
-    // Note: using StyleSheet.absoluteFillObj breaks scanner
-    <View style={styles.container}>
-      {/* Work around for letting the scanner scan upon returning to */}
-      {isFocused && <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFill} />}
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-    </View>
-  );
-}
-
-function MyCardsScreen() {
-  // QR code generator
-  return (
-    <View style={styles.container}>
-      <Text>QR code should be below</Text>
-      <QRCode
-        value="https://en.wikipedia.org/wiki/Cat"
-      />
-    </View>
-  );
-}
-
-function HistoryScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>History Page</Text>
-    </View>
-  );
-}
-
+// Actual app begins here
 const Tab = createBottomTabNavigator();
+
+const CustomTabBarButton = ({ children, onPress }) => (
+  <TouchableOpacity style={{
+    top: -30,
+    justifyContent: 'center',
+    alignContent: 'center',
+  }} onPress={onPress}>
+    <View style={{
+      width: 70,
+      height: 70,
+      borderRadius: 35,
+      backgroundColor: '#57B8EE',
+      ...styles.shadow
+    }}>
+      {children}
+    </View>
+  </TouchableOpacity>
+);
 
 // need to figure out:
 // How to add more space above icons (so it matches figma)
@@ -93,14 +54,29 @@ function MyTabs() {
         name="Scan"
         component={ScanScreen}
         options={{
-          tabBarIcon: () => (<Image source={require("./assets/ScanIcon.png")} style={{ width: 20, height: 20 }} />)
+          tabBarIcon: () => (
+            <View>
+              <Image
+                source={require("./assets/ScanIcon.png")}
+                resizeMode="contain"
+                style={{ width: 30, height: 30, tintColor: '#fff' }}
+              />
+              <Text color='#fff'>Scan</Text>
+            </View>
+          ),
+          tabBarButton: (props) => (
+            <CustomTabBarButton {...props} />
+          )
         }}
       />
       <Tab.Screen
         name="History"
         component={HistoryScreen}
         options={{
-          tabBarIcon: () => (<Image source={require("./assets/historyIcon.png")} style={{ width: 20, height: 20 }} />)
+          tabBarIcon: () => (<Image
+            source={require("./assets/historyIcon.png")}
+            style={{ width: 20, height: 20 }}
+          />)
         }}
       />
     </Tab.Navigator>
@@ -122,4 +98,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  shadow: {
+    shadowColor: '#7F5DF0',
+    shadowOffset: {
+      width: 0,
+      height: 10
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5
+  }
 });
