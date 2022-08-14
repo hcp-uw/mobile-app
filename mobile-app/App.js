@@ -87,7 +87,7 @@ function MyTabs() {
                 source={require("./assets/historyIcon.png")}
                 style={{ width: 20, height: 20 }}
               />
-              <Text color="646464">History</Text>
+              <Text color="#646464">History</Text>
             </View>
           )
         }}
