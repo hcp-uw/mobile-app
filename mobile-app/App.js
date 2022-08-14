@@ -42,12 +42,20 @@ const CustomTabBarButton = ({ children, onPress }) => (
 // How to make scan button 
 function MyTabs() {
   return (
-    <Tab.Navigator initialRouteName='Scan'>
+    <Tab.Navigator initialRouteName='Scan'
+      tabBarOptions={{
+        showLabel: false
+      }}>
       <Tab.Screen
         name="My Cards"
         component={MyCardsScreen}
         options={{
-          tabBarIcon: () => (<Image source={require("./assets/MyCardsIcon.png")} style={{ width: 20, height: 20 }} />)
+          tabBarIcon: () => (
+            <View>
+              <Image source={require("./assets/MyCardsIcon.png")} style={{ width: 20, height: 20 }} />
+              <Text color="#646464">My Cards</Text>
+            </View>
+          )
         }}
       />
       <Tab.Screen
@@ -73,10 +81,15 @@ function MyTabs() {
         name="History"
         component={HistoryScreen}
         options={{
-          tabBarIcon: () => (<Image
-            source={require("./assets/historyIcon.png")}
-            style={{ width: 20, height: 20 }}
-          />)
+          tabBarIcon: () => (
+            <View>
+              <Image
+                source={require("./assets/historyIcon.png")}
+                style={{ width: 20, height: 20 }}
+              />
+              <Text color="646464">History</Text>
+            </View>
+          )
         }}
       />
     </Tab.Navigator>
