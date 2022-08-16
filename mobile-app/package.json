@@ -10,6 +10,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.9",
     "@react-native-community/cli": "^8.0.3",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.11",
@@ -23,7 +24,8 @@
     "react-native-qrcode-svg": "^6.1.2",
     "react-native-svg": "^12.4.3",
     "react-native-web": "0.17.7",
-    "rn-qr-generator": "^1.2.0"
+    "rn-qr-generator": "^1.2.0",
+    "expo-updates": "~0.13.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
