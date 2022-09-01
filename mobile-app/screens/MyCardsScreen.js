@@ -5,7 +5,7 @@
 // Work on spacing and layout
 // Use textInput for making a new card
 // Manage multiple cards
-// Create new card
+// Do we agree on the gray background / white text? Kind of difficult to read
 
 // need help on improving readability;
 // want to be able to do something like import { SingleCard } from './screens/Card';
@@ -32,26 +32,27 @@ export function MyCardsScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>One of your cards are below</Text>
+            <Text>Your cards are below</Text>
             {SingleCard()}
             <Button
                 title="Connect!"
-                onPress= {ShowQR()}
+                onPress={ShowQR()}
             />
         </View>
     );
 }
 
 // Picture for Single Card
-const Pfp = props => <Avatar.Icon {...props} icon="folder" />
+const Pfp = props => <Avatar.Icon {...props} icon="folder" style={{textAlign: 'center'}}/>
 
 // Single Card Component
 const SingleCard = () => (
     <View style={{padding: 20}}>
-        <Card style={{elevation: 50, height: 400, width: 250}}>
-            <Card.Content>
+        <Card style={styles.card}>
+            <Card.Content style={{alignItems: "center"}}>
+                <Paragraph style={{padding: 10}}>Card Type</Paragraph>
                 {Pfp()}
-                <Title>Your Name</Title>
+                <Title style={{padding: 10}}>Your Name</Title>
                 <Paragraph>Card content</Paragraph>
             </Card.Content>
         </Card>
@@ -72,5 +73,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 60,
+    },
+    card: {
+        elevation: 50,
+        height: 400,
+        width: 250,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        backgroundColor: "#D0D0D0",
     },
 });
