@@ -7,7 +7,12 @@ export function HistoryScreen() {
 
     const save = async () => {
         try {
-            AsyncStorage.setItem("myName", text);
+            let user = {
+                name: text,
+                ID: 123456,
+                Location: "Bellevue",
+            }
+            AsyncStorage.setItem("user", JSON.stringify(user));
         } catch(error) {
             alert(error);
         }
@@ -15,9 +20,9 @@ export function HistoryScreen() {
 
     const load = async () => {
         try {
-            let name = await AsyncStorage.getItem("myName");
-            if(name !== null) {
-                setText(name);
+            let user = await AsyncStorage.getItem("user");
+            if(user !== null) {
+                setText(JSON.parse(user).name);
             }
         } catch (error) {
             alert(error);
@@ -26,7 +31,7 @@ export function HistoryScreen() {
 
     const remove = async () => {
         try {
-            AsyncStorage.removeItem("myName");
+            AsyncStorage.removeItem("user");
         } catch(error) {
             alert(error);
         } finally {
