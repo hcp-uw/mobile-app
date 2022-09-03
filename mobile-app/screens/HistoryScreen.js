@@ -1,46 +1,92 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function HistoryScreen() {
-    const [value, setText] = useState("no data");
+    const [text, setText] = useState("");
 
-    const storeData = async (value) => {
+    const save = async () => {
         try {
-            await AsyncStorage.setItem('@input_text', value);
-            console.log("data stored");
-        } catch (e) {
-            console.log("something broke");
+            AsyncStorage.setItem("myName", text);
+        } catch(error) {
+            alert(error);
         }
     }
 
-    const getData = async () => {
-
-        AsyncStorage.getItem('@input_text').then((input) => {
-            console.log(input);
-            setText(input);
-            console.log("data read");
-        }).catch(error => console.log(error));
+    const load = async () => {
+        try {
+            let name = await AsyncStorage.getItem("myName");
+            if(name !== null) {
+                setText(name);
+            }
+        } catch (error) {
+            alert(error);
+        }
     }
 
-    const handleChange = (text) => {
-        storeData(text);
-        getData();
+    const remove = async () => {
+        try {
+            AsyncStorage.removeItem("myName");
+        } catch(error) {
+            alert(error);
+        } finally {
+            setText("");
+        }
     }
+
+    useEffect(() => {
+        load();
+    }, []);
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{value}</Text>
-            <TextInput style={styles.input} onChangeText={(text) => handleChange(text)} value={value}></TextInput>
+        <View style={styles.container}>
+            <Text style={{height: 30}}>{text}</Text>
+            <Text style={styles.name}> What's your name?</Text>
+
+            <TextInput style={styles.input} onChangeText={text => setText(text)}/>
+
+            <TouchableOpacity style={styles.button} onPress={() => save()}>
+                <Text style={{color: "white"}}>Save my name</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={() => remove()}>
+                <Text style={{color: "white"}}>Remove my name</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
     },
+    name: {
+        fontSize:24,
+        fontWeight: "300",
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: "#575DD9",
+        alignSelf: "stretch",
+        margin: 32,
+        height: 64,
+        borderRadius: 6,
+        paddingHorizontal: 16,
+        fontSize: 24,
+        fontWeight: "300",
+    },
+    button: {
+        backgroundColor: "#575DD9",
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "stretch",
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        marginTop: 32,
+        marginHorizontal: 32,
+        borderRadius: 6,
+    }
 });
