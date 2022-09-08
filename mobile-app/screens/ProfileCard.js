@@ -1,5 +1,8 @@
+// ISSUES
+// Kebob button; buttons are not showing
+
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
 class ProfileCard extends React.Component {
@@ -7,6 +10,11 @@ class ProfileCard extends React.Component {
         return (
             <View style={{ padding: 20 }}>
                 <Card style={this.styles.card}>
+                    <Card.Content style={{alignItems: "flex-end"}}>
+                        <TouchableOpacity onPress={this.showOptions}>
+                            <Image source={require("../assets/Kebab.png")}/>
+                        </TouchableOpacity>
+                    </Card.Content>
                     <Card.Content style={{alignItems: "center"}}>
                         <Paragraph style={{padding: 10}}>Card Type</Paragraph>
                         {this.Pfp(this.props)}
@@ -17,6 +25,19 @@ class ProfileCard extends React.Component {
             </View>
         )
     }
+
+    showOptions = () => (
+        <View>
+            <Button
+                title="Edit"
+                onPress=""
+            />
+            <Button
+                title="Delete"
+                onPress=""
+            />
+        </View>
+    )
 
     Pfp = (props) => <Avatar.Icon {...props} icon="folder" style={{textAlign: 'center'}}/>
 

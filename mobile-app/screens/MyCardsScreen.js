@@ -1,11 +1,3 @@
-// ISSUES
-// "Connect" button; TypeError: onPress is not a function. (In 'onPress(event)', 'onPress' is an instance of Object)
-
-// TODO
-// Use textInput for making a new card
-// Manage multiple cards
-// Do we agree on the gray background / white text? Kind of difficult to read
-
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
