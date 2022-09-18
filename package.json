@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "expo-cli": "^6.0.5",
     "rn-qr-generator": "^1.2.0"
   }
 }

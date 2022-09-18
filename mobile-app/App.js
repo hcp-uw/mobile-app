@@ -1,5 +1,6 @@
+// Buttons aren't lined up :(
+
 import React from 'react';
-import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Image,
@@ -37,14 +38,11 @@ const CustomTabBarButton = ({ children, onPress }) => (
   </TouchableOpacity>
 );
 
-// need to figure out:
-// How to add more space above icons (so it matches figma)
-// How to make scan button 
 function MyTabs() {
   return (
     <Tab.Navigator initialRouteName='Scan'
-      tabBarOptions={{
-        showLabel: false
+      screenOptions={{
+        tabBarShowLabel: false
       }}>
       <Tab.Screen
         name="My Cards"

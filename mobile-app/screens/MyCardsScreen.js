@@ -1,18 +1,39 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
+import ProfileCard from './ProfileCard';
+
 export function MyCardsScreen() {
-    // QR code generator
+    // Plus button on top right creates new card
+    // Single card
+    // "Connect!" button under cards
+    // On press "Connect!" button;
+    // Generates QR code
+
     return (
         <View style={styles.container}>
-            <Text>QR code should be below</Text>
-            <QRCode
-                value="https://en.wikipedia.org/wiki/Cat"
+            <Text>Your cards are below</Text>
+            {ShowProfileCard()}
+            <Button
+                title="Connect!"
+                onPress={ShowQR()}
             />
         </View>
     );
 }
+
+// Shows All Cards
+const ShowProfileCard = () => (
+    <ProfileCard/>
+)
+
+// QR Code Component
+const ShowQR = () => (
+    <QRCode
+        value="https://en.wikipedia.org/wiki/Cat"
+    />
+)
 
 const styles = StyleSheet.create({
     container: {
@@ -20,5 +41,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingBottom: 60,
     },
 });
