@@ -1,3 +1,5 @@
+// Buttons aren't lined up :(
+
 import React from 'react';
 import { MyTabs } from './Components/MyTabs';
 import { NavigationContainer } from '@react-navigation/native';
