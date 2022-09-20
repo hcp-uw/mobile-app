@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, Button, Text, StyleSheet, Dimensions } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useIsFocused } from "@react-navigation/native";
 
