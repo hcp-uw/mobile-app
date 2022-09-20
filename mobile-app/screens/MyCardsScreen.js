@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
-import ProfileCard from './ProfileCard';
+import ProfileCard from '../Components/ProfileCard';
 
 export function MyCardsScreen() {
     // Plus button on top right creates new card
