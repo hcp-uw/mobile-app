@@ -45,7 +45,7 @@ class ProfileCard extends React.Component {
         card: {
             elevation: 50,
             height: 400,
-            width: 250,
+            // width: 250,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
             borderBottomLeftRadius: 10,
