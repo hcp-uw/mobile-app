@@ -11,12 +11,6 @@ const CarouselCards = () => {
   const [index, setIndex] = React.useState(0)
   const isCarousel = React.useRef(null)
 
-    function renderItem() {
-        return (
-            <ProfileCard />
-        );
-    }
-
   return (
     <View style={{
         justifyContent: 'center',
@@ -27,7 +21,7 @@ const CarouselCards = () => {
         layoutCardOffset={9}
         ref={isCarousel}
         data={data}
-        renderItem={renderItem}
+        renderItem={ProfileCard}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         onSnapToItem={(index) => setIndex(index)}
