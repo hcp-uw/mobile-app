@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 
-import ProfileCard from './ProfileCard';
+import ProfileCard from '../Components/ProfileCard';
+import CardCarousel from '../Components/CardCarousel';
+import CarouselCards from '../Components/snapCarousel';
 
 export function MyCardsScreen() {
     // Plus button on top right creates new card
@@ -12,14 +14,15 @@ export function MyCardsScreen() {
     // Generates QR code
 
     return (
-        <View style={styles.container}>
-            <Text>Your cards are below</Text>
-            {ShowProfileCard()}
-            <Button
-                title="Connect!"
-                onPress={ShowQR()}
-            />
-        </View>
+        // <View style={styles.container}>
+        //     <Text>Your cards are below</Text>
+        //     {ShowProfileCard()}
+        //     <Button
+        //         title="Connect!"
+        //         onPress={ShowQR()}
+        //     />
+        // </View>
+        <CarouselCards />
     );
 }
 
@@ -41,6 +44,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 60,
     },
 });
