@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-import ProfileCard from '../Components/ProfileCard';
-import CardCarousel from '../Components/CardCarousel';
+// import CardCarousel from '../Components/CardCarousel';
 import CarouselCards from '../Components/snapCarousel';
 
 export function MyCardsScreen() {
@@ -14,29 +12,24 @@ export function MyCardsScreen() {
     // Generates QR code
 
     return (
-        // <View style={styles.container}>
-        //     <Text>Your cards are below</Text>
-        //     {ShowProfileCard()}
-        //     <Button
-        //         title="Connect!"
-        //         onPress={ShowQR()}
-        //     />
-        // </View>
-        <CarouselCards />
+        <View style={styles.container}>
+
+            <View style={styles.alignHorizontal}>
+                <Text>Your cards are below</Text>
+                <TouchableOpacity style={{padding: 10}} onPress={createCard()}>
+                    <Image source={require("../assets/plus-sign.png")}/>
+                </TouchableOpacity>
+            </View>
+
+            <CarouselCards />
+        </View>
+
     );
 }
 
-// Shows All Cards
-const ShowProfileCard = () => (
-    <ProfileCard/>
-)
+const createCard = () => {
 
-// QR Code Component
-const ShowQR = () => (
-    <QRCode
-        value="https://en.wikipedia.org/wiki/Cat"
-    />
-)
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -44,5 +37,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingBottom: 60,
+    },
+    alignHorizontal: {
+        paddingTop: 40,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 });
