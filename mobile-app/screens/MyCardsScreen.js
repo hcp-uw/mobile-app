@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
+import { View, Text, TouchableOpacity, StyleSheet, Button, Image } from 'react-native';
 
-import ProfileCard from './ProfileCard';
+import ProfileCard from '../Components/ProfileCard';
 
 export function MyCardsScreen() {
     // Plus button on top right creates new card
@@ -13,26 +12,27 @@ export function MyCardsScreen() {
 
     return (
         <View style={styles.container}>
-            <Text>Your cards are below</Text>
+            <View style={styles.alignHorizontal}>
+                <Text>Your cards are below</Text>
+                <TouchableOpacity style={{padding: 10}} onPress={createCard()}>
+                    <Image source={require("../assets/plus-sign.png")}/>
+                </TouchableOpacity>
+            </View>
             {ShowProfileCard()}
-            <Button
-                title="Connect!"
-                onPress={ShowQR()}
-            />
         </View>
     );
 }
 
+const createCard = () => (
+    // check if showQR is true, if so show this card. toggle
+    // otherwise, show another blank card
+    // because onPress doesn't expect a return
+    ShowProfileCard()
+)
+
 // Shows All Cards
 const ShowProfileCard = () => (
     <ProfileCard/>
-)
-
-// QR Code Component
-const ShowQR = () => (
-    <QRCode
-        value="https://en.wikipedia.org/wiki/Cat"
-    />
 )
 
 const styles = StyleSheet.create({
@@ -42,5 +42,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingBottom: 60,
+    },
+    alignHorizontal: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 });

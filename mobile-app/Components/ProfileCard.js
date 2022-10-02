@@ -1,14 +1,12 @@
-// ISSUES
-// Kebob button; buttons are not showing
-
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Button } from 'react-native';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
+import QRCode from 'react-native-qrcode-svg';
 
 class ProfileCard extends React.Component {
     render() {
         return (
-            <View style={{ padding: 20 }}>
+            <View style={{ padding: 10 }}>
                 <Card style={this.styles.card}>
                     <Card.Content style={{alignItems: "flex-end"}}>
                         <TouchableOpacity onPress={this.showOptions}>
@@ -20,12 +18,19 @@ class ProfileCard extends React.Component {
                         {this.Pfp(this.props)}
                         <Title style={{padding: 10}}>Your Name</Title>
                         <Paragraph>Card content</Paragraph>
+                        {this.ShowQR()}
                     </Card.Content>
                 </Card>
             </View>
         )
     }
 
+    ShowQR = () => (
+        <QRCode
+            value="https://en.wikipedia.org/wiki/Cat"
+        />
+    )
+    
     showOptions = () => (
         <View>
             <Button
