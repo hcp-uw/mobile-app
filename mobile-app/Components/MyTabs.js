@@ -1,5 +1,3 @@
-// 1. Import 
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { MyCardsScreen } from '../screens/MyCardsScreen';
@@ -14,19 +12,11 @@ import {
 
 import { CustomTabBarButton } from './CustomTabBarButton';
 
-// Actual app begins here
 const Tab = createBottomTabNavigator();
 
-// need to figure out:
-// How to add more space above icons (so it matches figma)
-// How to make scan button 
 export function MyTabs() {
   return (
     <Tab.Navigator initialRouteName='Scan'
-    // tabBarOptions={{
-    //   tabStyle: {height: 0},
-    //   style: {backgroundColor: 'transparent'}
-    // }}>
     screenOptions={{
         "tabBarShowLabel": false,
         "tabBarStyle": [
