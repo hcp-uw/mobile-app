@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-import ProfileCard from '../Components/ProfileCard';
+// import CardCarousel from '../Components/CardCarousel';
+import CarouselCards from '../Components/snapCarousel';
 
 export function MyCardsScreen() {
     // Plus button on top right creates new card
@@ -12,28 +13,23 @@ export function MyCardsScreen() {
 
     return (
         <View style={styles.container}>
+
             <View style={styles.alignHorizontal}>
                 <Text>Your cards are below</Text>
                 <TouchableOpacity style={{padding: 10}} onPress={createCard()}>
                     <Image source={require("../assets/plus-sign.png")}/>
                 </TouchableOpacity>
             </View>
-            {ShowProfileCard()}
+
+            <CarouselCards />
         </View>
+
     );
 }
 
-const createCard = () => (
-    // check if showQR is true, if so show this card. toggle
-    // otherwise, show another blank card
-    // because onPress doesn't expect a return
-    ShowProfileCard()
-)
+const createCard = () => {
 
-// Shows All Cards
-const ShowProfileCard = () => (
-    <ProfileCard/>
-)
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -44,6 +40,7 @@ const styles = StyleSheet.create({
         paddingBottom: 60,
     },
     alignHorizontal: {
+        paddingTop: 40,
         flexDirection: 'row',
         alignItems: 'center',
     },

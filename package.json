@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "expo-cli": "^6.0.5",
+    "react-native-snap-carousel": "^3.9.1",
     "rn-qr-generator": "^1.2.0"
   }
 }
