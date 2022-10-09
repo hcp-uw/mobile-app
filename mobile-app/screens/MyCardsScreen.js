@@ -22,7 +22,9 @@ export function MyCardsScreen() {
         //         onPress={ShowQR()}
         //     />
         // </View>
-        <CarouselCards />
+        <View style={styles.container}>
+            <CarouselCards />
+        </View>
     );
 }
 

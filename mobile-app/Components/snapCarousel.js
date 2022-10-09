@@ -17,7 +17,8 @@ const CarouselCards = () => {
         alignItems: 'center'
     }}>
       <Carousel
-        layout='stack'
+        contentContainerCustomStyle={{ alignItems: 'center' }}
+        layout='tinder'
         layoutCardOffset={9}
         ref={isCarousel}
         data={data}
